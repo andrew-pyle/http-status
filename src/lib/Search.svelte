@@ -2,12 +2,21 @@
   export let value = "";
 </script>
 
-<div class="multi-element-pill">
-  <input type="numeric" bind:value />
-  <button>Search</button>
+<div>
+  <label for="http-search">Search for HTTP codes & descriptions </label>
+  <input id="http-search" type="numeric" bind:value />
 </div>
 
 <style>
+  label {
+    display: block;
+    font-size: 1rem;
+    margin-bottom: 10px;
+  }
+  input {
+    display: block;
+    width: 100%;
+  }
   /* Give the elements matching internal straight sides, 
          making one large pill. Stacks into multipls pills
          on small screens */

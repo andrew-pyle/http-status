@@ -26,8 +26,8 @@
 
     codesList = data.map((element) => ({
       code: element.code,
-      text: element.phrase,
-      description: element.description,
+      text: element.phrase.replaceAll("**", ""),
+      description: element.description.replaceAll('"', ""),
       link: new URL(element.spec_href),
     }));
     console.log({ codesList });
@@ -74,5 +74,6 @@
 <style>
   .status-code-list {
     list-style-type: none;
+    padding: 0;
   }
 </style>

@@ -8,7 +8,8 @@ body {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   background: hsla(235, 11%, 13%, 1);
   color: hsla(0, 0%, 100%, 0.5);
-  font-size: 3em;
+  font-size: 3rem;
+  padding: 1em;
 }
 
 footer {
@@ -17,7 +18,6 @@ footer {
 
 h1 {
   margin: 0;
-  font-size: 8rem;
 }
 
 a {
@@ -29,15 +29,51 @@ button {
   cursor: pointer;
 }
 
+h1 {
+  font-size: 7rem;
+}
+input {
+  font-size: 8rem;
+}
+
+@media screen and (max-width: 1090px) {
+  h1 {
+    font-size: 5.5rem;
+  }
+}
+@media screen and (max-width: 900px) {
+  h1 {
+    font-size: 4.5rem;
+  }
+}
+@media screen and (max-width: 768px) {
+  h1 {
+    font-size: 4rem;
+  }
+}
+@media screen and (max-width: 670px) {
+  h1 {
+    font-size: 3rem;
+  }
+}
+@media screen and (max-width: 550px) {
+  h1 {
+    font-size: 1.9rem;
+  }
+  body {
+    padding: 0.5em;
+    font-size: 2rem;
+  }
+}
+
 input,
 button {
-  font-size: 1.75rem;
   font-family: inherit;
+  padding: 0 0.15em;
   border: none;
-  border: 1px solid hsla(0, 0%, 100%, 0.1);
+  border-bottom: 2px solid hsla(0, 0%, 100%, 0.5);
   color: inherit;
   -webkit-appearance: none;
-  padding: 0.5em 1em;
 }
 
 input {
@@ -65,8 +101,7 @@ body {
 
 body {
   margin: 0 auto;
-  max-width: 1080px;
-  padding: 1em;
+  max-width: 1090px;
   display: flex;
   flex-direction: column;
 }

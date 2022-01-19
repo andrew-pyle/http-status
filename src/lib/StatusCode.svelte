@@ -9,18 +9,14 @@
   <span class="code badge">{code}</span>
   {text}
 </a>
-
 <p class="list-item">{description}</p>
 
 <style>
-  .list-item {
-    font-weight: 200;
-    margin-top: 0.3em;
-  }
   .title-item {
     display: flex;
     align-items: baseline;
-    gap: 10px;
+    flex-wrap: wrap;
+    gap: 20px;
   }
   .code {
     font-weight: 700;
@@ -32,5 +28,9 @@
     color: black;
     border-radius: 13px;
     padding: 0 0.3em;
+  }
+  .list-item {
+    font-weight: 200;
+    margin-top: 0.3em;
   }
 </style>
