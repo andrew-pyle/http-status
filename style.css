@@ -8,7 +8,11 @@ body {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   background: hsla(235, 11%, 13%, 1);
   color: hsla(0, 0%, 100%, 0.5);
-  font-size: 2em;
+  font-size: 3em;
+}
+
+footer {
+  font-size: 1em;
 }
 
 h1 {
@@ -64,4 +68,5 @@ body {
   max-width: 1080px;
   padding: 1em;
   display: flex;
+  flex-direction: column;
 }

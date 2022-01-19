@@ -12,9 +12,7 @@
   let matchingCodes: StatusCodeType[] = [];
   let componentStatus: "loading" | "failed" | "success" = "loading";
   $: {
-    matchingCodes = codesList.filter((statusCode) =>
-      searchForCode(searchText, statusCode)
-    );
+    matchingCodes = searchForCode(searchText, codesList);
   }
 
   onMount(async () => {
@@ -38,19 +36,31 @@
 
   function searchForCode(
     searchText: string,
-    statusCode: StatusCodeType
-  ): boolean {
-    return (
-      statusCode.code === searchText ||
-      statusCode.code.toString().includes(searchText) ||
-      statusCode.text.includes(searchText) ||
-      statusCode.description.includes(searchText)
+    codesList: StatusCodeType[]
+  ): StatusCodeType[] {
+    // Short circuit if no input
+    if (searchText.length === 0) {
+      return [];
+    }
+    // Return only one result if the input is an exact code
+    const directHit = codesList.find(
+      (statusCode) => statusCode.code === searchText
+    );
+    if (directHit) {
+      return [directHit];
+    }
+    // Return input matches in code, text, or description
+    return codesList.filter(
+      (statusCode) =>
+        statusCode.code.toString().includes(searchText) ||
+        statusCode.text.includes(searchText) ||
+        statusCode.description.includes(searchText)
     );
   }
 </script>
 
 {#if componentStatus === "success"}
-  <ul>
+  <ul class="status-code-list">
     {#each matchingCodes as { code, text, description, link }}
       <li><StatusCode {code} {text} {description} {link} /></li>
     {/each}
@@ -60,3 +70,9 @@
 {:else}
   <p>😵 Error.</p>
 {/if}
+
+<style>
+  .status-code-list {
+    list-style-type: none;
+  }
+</style>
