@@ -56,14 +56,13 @@
   /**
    * Remove unwanted content from Know Your HTTP Well Data
    */
-  function processApiResponse(element: KnowYourHttpWellCode) {
+  function processApiResponse(element: KnowYourHttpWellCode): StatusCodeType {
     return {
-      code: element.code,
-      text: element.phrase.replaceAll("**", ""),
-      description: element.description.replace(
-        /~?\s?\[\w+\]\s?\([\w:/.?=]+\)/gi,
-        ""
-      ),
+      code: element.code.trim(),
+      text: element.phrase.replaceAll("**", "").trim(),
+      description: element.description
+        .replace(/~?\s?\[[\w\s\d\*_]+\]\s?\([\w:/.?=]+\)/gi, "")
+        .trim(),
       link: new URL(element.spec_href),
     };
   }
