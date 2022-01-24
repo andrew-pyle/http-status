@@ -61,7 +61,7 @@
 
 {#if componentStatus === "success"}
   <ul class="status-code-list">
-    {#each matchingCodes as { code, text, description, link }}
+    {#each matchingCodes as { code, text, description, link } (code)}
       <li><StatusCode {code} {text} {description} {link} /></li>
     {/each}
   </ul>

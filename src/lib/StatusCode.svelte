@@ -1,15 +1,23 @@
 <script lang="ts">
+  import { getMdnLink } from "./mdnHttpCodeLink";
   export let code: string;
   export let text: string;
   export let description: string;
   export let link: URL;
+
+  let mdnLink = getMdnLink(code);
 </script>
 
-<a class="title-item" href={link.toString()}>
+<a class="title-item" href={mdnLink.toString()}>
   <span class="code badge">{code}</span>
   {text}
 </a>
 <p class="list-item">{description}</p>
+<div class="links-list">
+  <span>Links:</span>
+  <a href={mdnLink.toString()}>MDN</a>
+  <a href={link.toString()}>Spec</a>
+</div>
 
 <style>
   .title-item {
@@ -31,6 +39,12 @@
   }
   .list-item {
     font-weight: 200;
-    margin-top: 0.3em;
+    margin: 0.3em 0;
+  }
+  .links-list {
+    margin-bottom: 1em;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
   }
 </style>
