@@ -1,6 +1,5 @@
 <script lang="ts">
   import { onMount } from "svelte";
-
   import StatusCode from "./StatusCode.svelte";
   import type {
     StatusCodeApiResponse,
@@ -70,15 +69,33 @@
       description: element.description
         .replace(/~?\s?\[[\w\s\d\*_]+\]\s?\([\w:/.?=]+\)/gi, "")
         .trim(),
-      link: new URL(element.spec_href),
+      specLink: new URL(element.spec_href),
+      mdnLink: new URL(getMdnLink(element.code.trim())),
     };
+  }
+
+  /**
+   * Naive method to get the MDN link for an HTTP status code
+   */
+  function getMdnLink(code: string): URL {
+    const exactCode = /\d\d\d/;
+    if (!exactCode.test(code)) {
+      return new URL(
+        `https://developer.mozilla.org/en-US/docs/Web/HTTP/Status`
+      );
+    }
+    return new URL(
+      `https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/${code}`
+    );
   }
 </script>
 
 {#if componentStatus === "success"}
   <ul class="status-code-list">
-    {#each matchingCodes as { code, text, description, link } (code)}
-      <li><StatusCode {code} {text} {description} {link} /></li>
+    {#each matchingCodes as { code, text, description, specLink, mdnLink } (code)}
+      <li>
+        <StatusCode {code} {text} {description} {specLink} {mdnLink} />
+      </li>
     {/each}
   </ul>
 {:else if componentStatus === "loading"}

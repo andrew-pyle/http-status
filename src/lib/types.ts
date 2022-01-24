@@ -2,7 +2,8 @@ export interface StatusCode {
   code: string;
   text: string;
   description: string;
-  link: URL;
+  specLink: URL;
+  mdnLink: URL;
 }
 
 export interface KnowYourHttpWellCode {

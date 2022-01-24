@@ -1,11 +1,9 @@
 <script lang="ts">
-  import { getMdnLink } from "./mdnHttpCodeLink";
   export let code: string;
   export let text: string;
   export let description: string;
-  export let link: URL;
-
-  let mdnLink = getMdnLink(code);
+  export let specLink: URL;
+  export let mdnLink: URL;
 </script>
 
 <a class="title-item" href={mdnLink.toString()}>
@@ -16,7 +14,7 @@
 <div class="links-list">
   <span>Links:</span>
   <a href={mdnLink.toString()}>MDN</a>
-  <a href={link.toString()}>Spec</a>
+  <a href={specLink.toString()}>Spec</a>
 </div>
 
 <style>
