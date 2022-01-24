@@ -2,6 +2,9 @@
   import Search from "./lib/Search.svelte";
   import StatusCodeResults from "./lib/StatusCodeResults.svelte";
   let searchCode = "";
+
+  // TODO: Debounce search typing. The transition is jarring.
+  // Link: https://svelte.dev/repl/32550061c28f49169bc7a6d3a21dedd0?version=3.46.2
 </script>
 
 <main>

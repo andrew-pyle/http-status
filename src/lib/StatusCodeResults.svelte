@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import { fly } from "svelte/transition";
   import StatusCode from "./StatusCode.svelte";
   import type {
     StatusCodeApiResponse,
@@ -93,7 +94,7 @@
 {#if componentStatus === "success"}
   <ul class="status-code-list">
     {#each matchingCodes as { code, text, description, specLink, mdnLink } (code)}
-      <li>
+      <li transition:fly|local>
         <StatusCode {code} {text} {description} {specLink} {mdnLink} />
       </li>
     {/each}
