@@ -9,3 +9,11 @@
   <Search bind:value={searchCode} />
   <StatusCodeResults searchText={searchCode} />
 </main>
+<footer>
+  <p>
+    HTTP Information provided by <a
+      href="https://github.com/for-GET/know-your-http-well"
+      >Know Your HTTP * Well</a
+    >
+  </p>
+</footer>
