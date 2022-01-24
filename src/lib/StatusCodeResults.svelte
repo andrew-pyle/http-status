@@ -44,10 +44,17 @@
     if (directHit) {
       return [directHit];
     }
-    // Return input matches in code, text, or description
+    // If the search is only numbers, just return autocomplete
+    const isNumbersSearch = /\d+/.test(searchText);
+    if (isNumbersSearch) {
+      return codesList.filter((statusCode) =>
+        statusCode.code.startsWith(searchText)
+      );
+    }
+    // Return text search matches in code, text, or description
     return codesList.filter(
       (statusCode) =>
-        statusCode.code.toString().includes(searchText) ||
+        statusCode.code.includes(searchText) ||
         statusCode.text.includes(searchText) ||
         statusCode.description.includes(searchText)
     );
