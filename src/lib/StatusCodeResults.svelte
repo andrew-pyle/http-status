@@ -27,10 +27,13 @@
     codesList = data.map((element) => ({
       code: element.code,
       text: element.phrase.replaceAll("**", ""),
-      description: element.description.replaceAll('"', ""),
+      description: element.description.replace(
+        /~?\s?\[\w+\]\s?\([\w:/.?=]+\)/gi,
+        ""
+      ),
       link: new URL(element.spec_href),
     }));
-    console.log({ codesList });
+    // console.log({ codesList }); // Debug
     componentStatus = "success";
   });
 
