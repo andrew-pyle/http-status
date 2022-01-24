@@ -5,6 +5,7 @@
   import type {
     StatusCodeApiResponse,
     StatusCode as StatusCodeType,
+    KnowYourHttpWellCode,
   } from "./types";
 
   export let searchText: string;
@@ -23,16 +24,7 @@
       componentStatus = "failed";
     }
     const data = (await res.json()) as StatusCodeApiResponse;
-
-    codesList = data.map((element) => ({
-      code: element.code,
-      text: element.phrase.replaceAll("**", ""),
-      description: element.description.replace(
-        /~?\s?\[\w+\]\s?\([\w:/.?=]+\)/gi,
-        ""
-      ),
-      link: new URL(element.spec_href),
-    }));
+    codesList = data.map((element) => processApiResponse(element));
     // console.log({ codesList }); // Debug
     componentStatus = "success";
   });
@@ -59,6 +51,21 @@
         statusCode.text.includes(searchText) ||
         statusCode.description.includes(searchText)
     );
+  }
+
+  /**
+   * Remove unwanted content from Know Your HTTP Well Data
+   */
+  function processApiResponse(element: KnowYourHttpWellCode) {
+    return {
+      code: element.code,
+      text: element.phrase.replaceAll("**", ""),
+      description: element.description.replace(
+        /~?\s?\[\w+\]\s?\([\w:/.?=]+\)/gi,
+        ""
+      ),
+      link: new URL(element.spec_href),
+    };
   }
 </script>
 
