@@ -2,10 +2,13 @@
   export let value = "";
 </script>
 
-<div>
+<form role="search" on:submit|preventDefault action="">
   <label for="http-search">Search for HTTP codes & descriptions </label>
-  <input id="http-search" type="numeric" {value} on:input />
-</div>
+  <div class="inline-group">
+    <input id="http-search" type="search" on:input|preventDefault {value} />
+    <button type="submit">🔍</button>
+  </div>
+</form>
 
 <style>
   label {
@@ -16,5 +19,12 @@
   input {
     display: block;
     width: 100%;
+  }
+  input::after {
+    content: "dd";
+  }
+  .inline-group {
+    display: flex;
+    gap: 10px;
   }
 </style>

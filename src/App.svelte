@@ -4,23 +4,30 @@
   import StatusCodeResults from "./lib/StatusCodeResults.svelte";
   let searchCode = "302";
 
-  const handleInput: svelte.JSX.EventHandler<InputEvent, HTMLInputElement> = (
-    event
-  ) => {
+  function handleInput(event: SubmitEvent | InputEvent) {
+    // console.log({ event }); // Debug
     if (event.target instanceof HTMLInputElement) {
       searchCode = event.target.value;
+    } else if (event.target instanceof HTMLFormElement) {
+      const input = event.target.querySelector("input");
+      searchCode = input.value;
+      input.blur();
     } else {
       console.error(
         `Event target has no 'value'. Was the handler attached to a non-input element?`
       );
     }
-  };
+  }
   const debouncedHandleInput = debounce(handleInput, 125, true);
 </script>
 
 <main>
   <h1>HTTP Status Codes</h1>
-  <Search on:input={debouncedHandleInput} value={searchCode} />
+  <Search
+    on:input={debouncedHandleInput}
+    on:submit={handleInput}
+    value={searchCode}
+  />
   <StatusCodeResults searchText={searchCode} />
 </main>
 <footer>
