@@ -1,3 +1,8 @@
+<!-- 
+  TODO: Implement one-way data binding with Custom Events. 
+  Expose a custom search (?) event to prevent the need to know the internal structure
+  of the <form> to handle input events and submit events
+-->
 <script lang="ts">
   export let value = "";
 </script>
