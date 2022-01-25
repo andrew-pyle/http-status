@@ -9,13 +9,18 @@
   ) => {
     if (event.target instanceof HTMLInputElement) {
       searchCode = event.target.value;
+    } else {
+      console.error(
+        `Event target has no 'value'. Was the handler attached to a non-input element?`
+      );
     }
   };
+  const debouncedHandleInput = debounce(handleInput, 125, true);
 </script>
 
 <main>
   <h1>HTTP Status Codes</h1>
-  <Search on:input={debounce(handleInput, 125)} value={searchCode} />
+  <Search on:input={debouncedHandleInput} value={searchCode} />
   <StatusCodeResults searchText={searchCode} />
 </main>
 <footer>
