@@ -97,6 +97,8 @@
       <li transition:fly|local>
         <StatusCode {code} {text} {description} {specLink} {mdnLink} />
       </li>
+    {:else}
+      <li>No Results 😵</li>
     {/each}
   </ul>
 {:else if componentStatus === "loading"}

@@ -1,15 +1,21 @@
 <script lang="ts">
+  import debounce from "just-debounce-it";
   import Search from "./lib/Search.svelte";
   import StatusCodeResults from "./lib/StatusCodeResults.svelte";
-  let searchCode = "";
+  let searchCode = "302";
 
-  // TODO: Debounce search typing. The transition is jarring.
-  // Link: https://svelte.dev/repl/32550061c28f49169bc7a6d3a21dedd0?version=3.46.2
+  const handleInput: svelte.JSX.EventHandler<InputEvent, HTMLInputElement> = (
+    event
+  ) => {
+    if (event.target instanceof HTMLInputElement) {
+      searchCode = event.target.value;
+    }
+  };
 </script>
 
 <main>
   <h1>HTTP Status Codes</h1>
-  <Search bind:value={searchCode} />
+  <Search on:input={debounce(handleInput, 125)} value={searchCode} />
   <StatusCodeResults searchText={searchCode} />
 </main>
 <footer>

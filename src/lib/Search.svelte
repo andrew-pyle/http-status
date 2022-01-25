@@ -4,7 +4,7 @@
 
 <div>
   <label for="http-search">Search for HTTP codes & descriptions </label>
-  <input id="http-search" type="numeric" bind:value />
+  <input id="http-search" type="numeric" {value} on:input />
 </div>
 
 <style>
