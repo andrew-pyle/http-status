@@ -6,10 +6,10 @@
   export let mdnLink: URL;
 </script>
 
-<a class="title-item" href={mdnLink.toString()}>
-  <span class="code badge">{code}</span>
-  {text}
-</a>
+<p class="title-item">
+  <span class="badge">{code}</span>
+  <a href={mdnLink.toString()}>{text}</a>
+</p>
 <p class="list-item">{description}</p>
 <div class="links-list">
   <span>Links:</span>
@@ -23,13 +23,12 @@
     align-items: baseline;
     flex-wrap: wrap;
     gap: 20px;
-  }
-  .code {
-    font-weight: 700;
+    margin: 0;
   }
   .badge {
     display: inline-block;
     border: 1px solid inherit;
+    font-weight: 700;
     background: white;
     color: black;
     border-radius: 13px;
