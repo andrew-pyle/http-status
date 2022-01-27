@@ -35,7 +35,7 @@
   ): StatusCodeType[] {
     // Short circuit if no input
     if (searchText.length === 0) {
-      return [];
+      return codesList;
     }
     // Return only one result if the input is an exact code
     const directHit = codesList.find(
