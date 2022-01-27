@@ -65,6 +65,6 @@
   }
   .inline-group {
     display: flex;
-    gap: 10px;
+    gap: 7px;
   }
 </style>
