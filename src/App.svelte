@@ -6,7 +6,7 @@
   // why doesn't InputEvent work with svelte's types?
   function handleInput(event: Event) {
     if (event.target instanceof HTMLInputElement) {
-      searchCode = event.target.value;
+      searchCode = event.target.value.trim();
     } else {
       console.error(
         `Event target has no 'value'. Was the handler attached to a non-input element?`
@@ -16,7 +16,7 @@
   function handleSubmit(event: SubmitEvent) {
     if (event.target instanceof HTMLFormElement) {
       const input = event.target.querySelector("input");
-      searchCode = input.value;
+      searchCode = input.value.trim();
       input.blur();
     } else {
       console.error(
